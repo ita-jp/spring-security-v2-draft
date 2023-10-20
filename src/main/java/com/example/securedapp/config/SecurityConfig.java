@@ -17,6 +17,8 @@ public class SecurityConfig {
                         .anyRequest().authenticated()
                 )
                 .formLogin(login -> login
+                        //.usernameParameter("username")
+                        //.passwordParameter("password")
                         .loginPage("/login")
                         .permitAll()
                 );
