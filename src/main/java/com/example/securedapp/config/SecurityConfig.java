@@ -21,6 +21,9 @@ public class SecurityConfig {
                         //.passwordParameter("password")
                         .loginPage("/login")
                         .permitAll()
+                )
+                .logout(logout -> logout
+                        .logoutUrl("/logout") // この設定はデフォルト値なので省略可
                 );
 
         return http.build();
