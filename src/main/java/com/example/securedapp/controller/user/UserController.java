@@ -1,5 +1,6 @@
 package com.example.securedapp.controller.user;
 
+import com.example.securedapp.controller.RegisterController;
 import com.example.securedapp.service.user.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.core.Conventions;
@@ -22,7 +23,7 @@ public class UserController {
             RedirectAttributes redirectAttributes
     ) {
         if (bindingResult.hasErrors()) {
-            redirectAttributes.addFlashAttribute(form);
+            redirectAttributes.addFlashAttribute(RegisterController.FORM_ATTR_NAME, form);
             redirectAttributes.addFlashAttribute(BindingResult.MODEL_KEY_PREFIX + Conventions.getVariableName(form), bindingResult);
             return "redirect:/register";
         }
