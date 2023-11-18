@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 public class UserController {
 
     @PostMapping("/users")
-    public String create(String username, String password) {
+    public String create(UserForm form) {
         return "redirect:/login";
     }
 }
