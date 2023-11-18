@@ -24,4 +24,8 @@ public class UserService implements UserDetailsService {
                 )
                 .orElseThrow(() -> new UsernameNotFoundException(username + " not found"));
     }
+
+    public void create(String username, String password) {
+        userRepository.insert(username, password);
+    }
 }

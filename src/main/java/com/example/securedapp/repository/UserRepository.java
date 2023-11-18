@@ -1,6 +1,7 @@
 package com.example.securedapp.repository;
 
 import com.example.securedapp.service.user.User;
+import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
@@ -19,4 +20,14 @@ public interface UserRepository {
             """)
     Optional<User> findByUsername(@Param("username") String username);
 
+    @Insert("""
+            INSERT INTO users (
+                username
+              , password
+            ) VALUES (
+                #{username}
+              , #{password}
+            )
+            """)
+    void insert(@Param("username") String username, @Param("password") String password);
 }
