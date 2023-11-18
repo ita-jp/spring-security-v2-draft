@@ -11,7 +11,7 @@
     <form th:action="@{/users}" method="post" th:object="${userForm}">
         <div>
             <label for="username">ユーザー名</label>
-            <input type="text" id="username" name="username">
+            <input type="text" id="username" th:field="*{username}">
             <p th:errors="*{username}" style="color: red;"></p>
         </div>
         <div>
