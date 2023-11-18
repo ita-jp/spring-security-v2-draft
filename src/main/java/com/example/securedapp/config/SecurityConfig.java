@@ -38,6 +38,7 @@ public class SecurityConfig {
 
         http
                 .authorizeHttpRequests(authz -> authz
+                        .requestMatchers(antMatcher("/register")).permitAll()
                         .requestMatchers(new LoginLogoutRequestMatcher()).permitAll()
                         .anyRequest().authenticated()
                 )
