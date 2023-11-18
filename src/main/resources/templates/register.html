@@ -1,12 +1,14 @@
 <!DOCTYPE html>
-<html lang="ja">
+<html lang="ja"
+      xmlns:th="http://www.thymeleaf.org"
+>
 <head>
     <title>ユーザー登録</title>
 </head>
 <body>
 <h1>ユーザー登録</h1>
 <div>
-    <form>
+    <form th:action="@{/users}" method="post">
         <div>
             <label for="username">ユーザー名</label>
             <input type="text" id="username">
