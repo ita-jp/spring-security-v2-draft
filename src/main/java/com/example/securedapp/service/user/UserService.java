@@ -1,5 +1,7 @@
 package com.example.securedapp.service.user;
 
+import com.example.securedapp.repository.UserRepository;
+import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -7,15 +9,19 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 @Service
+@RequiredArgsConstructor
 public class UserService implements UserDetailsService {
+
+    private final UserRepository userRepository;
+
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        if ("tom".equals(username)) {
-            return User.withUsername(username)
-                    .password("password")
-                    .roles("USER")
-                    .build();
-        }
-        throw new UsernameNotFoundException("User not found");
+        return userRepository.findByUsername(username)
+                .map(u -> User.builder()
+                        .username(u.username())
+                        .password(u.password())
+                        .build()
+                )
+                .orElseThrow(() -> new UsernameNotFoundException(username + " not found"));
     }
 }
