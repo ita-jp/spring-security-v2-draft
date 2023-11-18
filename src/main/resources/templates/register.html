@@ -8,6 +8,9 @@
 <body>
 <h1>ユーザー登録</h1>
 <div>
+    <p>アカウントをお持ちの方は <a th:href="@{/login}">ログイン</a></p>
+</div>
+<div>
     <form th:action="@{/users}" method="post" th:object="${userForm}">
         <div>
             <label for="username">ユーザー名</label>

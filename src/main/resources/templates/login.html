@@ -13,6 +13,9 @@
 <div th:if="${param.logout}">
     <p>ログアウトしました</p>
 </div>
+<div>
+    <p>アカウントをお持ちでない方は <a th:href="@{/register}">ユーザー登録</a></p>
+</div>
 <form th:action="@{/login}" method="post">
     <div>
         <label for="usernameInput">ユーザー名</label>
