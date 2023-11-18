@@ -8,14 +8,16 @@
 <body>
 <h1>ユーザー登録</h1>
 <div>
-    <form th:action="@{/users}" method="post">
+    <form th:action="@{/users}" method="post" th:object="${userForm}">
         <div>
             <label for="username">ユーザー名</label>
             <input type="text" id="username" name="username">
+            <p th:errors="*{username}" style="color: red;"></p>
         </div>
         <div>
             <label for="password">パスワード</label>
             <input type="password" id="password" name="password">
+            <p th:errors="*{password}" style="color: red;"></p>
         </div>
         <div>
             <button type="submit">登録</button>
