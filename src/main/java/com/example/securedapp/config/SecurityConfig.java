@@ -1,16 +1,21 @@
 package com.example.securedapp.config;
 
 import jakarta.servlet.http.HttpServletRequest;
+import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.util.matcher.RequestMatcher;
 
 @Configuration
 @EnableWebSecurity
+@RequiredArgsConstructor
 public class SecurityConfig {
+
+    private final UserDetailsService userDetailsService;
 
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
@@ -28,7 +33,8 @@ public class SecurityConfig {
                 .logout(logout -> logout
                         .logoutUrl("/logout") // この設定はデフォルト値なので省略可
                         .logoutSuccessUrl("/login?logout") // この設定はデフォルト値なので省略可
-                );
+                )
+                .userDetailsService(userDetailsService);
 
         return http.build();
     }
