@@ -10,5 +10,10 @@
 <div>
     <a th:href="@{/logout}">ログアウト</a>
 </div>
+<div>
+    <ol>
+        <li th:each="notification : ${notificationList}" th:text="${notification.message}"></li>
+    </ol>
+</div>
 </body>
 </html>
