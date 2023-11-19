@@ -8,7 +8,7 @@
 <body>
 <h1>お知らせ登録</h1>
 <div>
-  <form>
+  <form th:action="@{/notifications}" method="post">
     <div>
       <label for="message">メッセージ</label>
       <input type="text" id="message" />
