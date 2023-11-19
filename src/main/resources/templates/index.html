@@ -11,6 +11,9 @@
     <a th:href="@{/logout}">ログアウト</a>
 </div>
 <div>
+    <a th:href="@{/notifications/creationForm}">お知らせ登録</a>
+</div>
+<div>
     <ol>
         <li th:each="notification : ${notificationList}" th:text="${notification.message}"></li>
     </ol>
