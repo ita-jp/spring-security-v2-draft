@@ -15,7 +15,10 @@
 </div>
 <div>
     <ol>
-        <li th:each="notification : ${notificationList}" th:text="${notification.message}"></li>
+        <li th:each="notification : ${notificationList}">
+            <span th:text="${notification.message}"></span>
+            (by <span th:text="${notification.createdBy}"></span>)
+        </li>
     </ol>
 </div>
 </body>

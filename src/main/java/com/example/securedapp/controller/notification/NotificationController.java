@@ -2,6 +2,7 @@ package com.example.securedapp.controller.notification;
 
 import com.example.securedapp.service.notification.NotificationService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
@@ -21,10 +22,15 @@ public class NotificationController {
     }
 
     @PostMapping("/notifications")
-    public String create(@Validated NotificationForm form, BindingResult bindingResult) {
+    public String create(
+            @Validated NotificationForm form,
+            BindingResult bindingResult,
+            Authentication authentication
+    ) {
         if (bindingResult.hasErrors()) {
             return showCreationForm(form);
         }
+        notificationService.create(form.message(), authentication.getName());
         return "redirect:/";
     }
 }
