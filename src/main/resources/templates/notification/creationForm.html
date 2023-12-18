@@ -8,10 +8,11 @@
 <body>
 <h1>お知らせ登録</h1>
 <div>
-  <form th:action="@{/notifications}" method="post">
+  <form th:action="@{/notifications}" method="post" th:object="${notificationForm}">
     <div>
       <label for="message">メッセージ</label>
-      <input type="text" id="message" name="message"/>
+      <input type="text" id="message" th:field="*{message}"/>
+      <span th:errors="*{message}" class="invalid-feedback"></span>
     </div>
     <div>
       <button type="submit">登録</button>
