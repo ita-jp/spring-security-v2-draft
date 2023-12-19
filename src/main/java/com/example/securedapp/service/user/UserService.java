@@ -24,9 +24,17 @@ public class UserService implements UserDetailsService {
                 .map(u -> User.builder()
                         .username(u.username())
                         .password(u.password())
+                        .authorities(findAuthorities(u.username()))
                         .build()
                 )
                 .orElseThrow(() -> new UsernameNotFoundException(username + " not found"));
+    }
+
+    private String[] findAuthorities(String username) {
+        return userRepository.findAuthoritiesByUsername(username)
+                .stream()
+                .map(Enum::name)
+                .toArray(String[]::new);
     }
 
     @Transactional

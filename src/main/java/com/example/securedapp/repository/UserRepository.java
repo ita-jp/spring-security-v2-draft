@@ -1,11 +1,13 @@
 package com.example.securedapp.repository;
 
+import com.example.securedapp.service.user.Authority;
 import com.example.securedapp.service.user.User;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 
+import java.util.List;
 import java.util.Optional;
 
 @Mapper
@@ -19,6 +21,14 @@ public interface UserRepository {
             WHERE u.username = #{username}
             """)
     Optional<User> findByUsername(@Param("username") String username);
+
+    @Select("""
+            SELECT
+                a.authority
+            FROM authorities a
+            WHERE a.username = #{username}
+            """)
+    List<Authority> findAuthoritiesByUsername(@Param("username") String username);
 
     @Insert("""
             INSERT INTO users (
