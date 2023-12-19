@@ -5,3 +5,6 @@ INSERT INTO users (username, password) VALUES ('bob', '$2a$10$Uz3R17Fn4izSBDO15I
 
 INSERT INTO notifications(username, message) VALUES ('tom', 'これはテストのおしらせです。1');
 INSERT INTO notifications(username, message) VALUES ('bob', 'これはテストのおしらせです。2');
+
+INSERT INTO authorities (username, authority) VALUES ('tom', 'ADMIN');
+INSERT INTO authorities (username, authority) VALUES ('bob', 'MEMBER');
