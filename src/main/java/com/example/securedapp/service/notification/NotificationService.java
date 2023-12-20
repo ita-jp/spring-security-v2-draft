@@ -2,6 +2,7 @@ package com.example.securedapp.service.notification;
 
 import com.example.securedapp.repository.notification.NotificationRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -17,8 +18,10 @@ public class NotificationService {
         return notificationRepository.select();
     }
 
+    @PreAuthorize("hasAuthority('ADMIN')")
     @Transactional
     public void create(String message, String username) {
         notificationRepository.insert(message, username);
     }
 }
+
