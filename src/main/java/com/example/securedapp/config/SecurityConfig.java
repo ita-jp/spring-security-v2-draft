@@ -39,6 +39,7 @@ public class SecurityConfig {
                 .authorizeHttpRequests(authz -> authz
                         .requestMatchers(antMatcher("/register")).permitAll()
                         .requestMatchers(antMatcher(HttpMethod.POST, "/users")).permitAll()
+                        .requestMatchers(antMatcher("/notifications/**")).hasAuthority("ADMIN")
                         .requestMatchers(new LoginLogoutRequestMatcher()).permitAll()
                         .anyRequest().authenticated()
                 )
