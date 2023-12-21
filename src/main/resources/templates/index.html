@@ -14,6 +14,9 @@
 <div sec:authorize="hasAuthority('ADMIN')">
     <a th:href="@{/notifications/creationForm}">お知らせ登録</a>
 </div>
+<div sec:authorize="hasAuthority('ADMIN')">
+    <a th:href="@{/users}">ユーザー一覧</a>
+</div>
 <div>
     <ol>
         <li th:each="notification : ${notificationList}">
