@@ -5,6 +5,7 @@ import com.example.securedapp.service.user.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.core.Conventions;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -33,7 +34,9 @@ public class UserController {
     }
 
     @GetMapping("/users")
-    public String showList() {
+    public String showList(Model model) {
+        var userList = userService.findAll();
+        model.addAttribute("userList", userList);
         return "user/list";
     }
 }

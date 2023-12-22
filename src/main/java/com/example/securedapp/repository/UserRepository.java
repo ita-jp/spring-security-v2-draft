@@ -40,4 +40,12 @@ public interface UserRepository {
             )
             """)
     void insert(@Param("username") String username, @Param("password") String password);
+
+    @Select("""
+            SELECT
+                username,
+                '********'
+            FROM users
+            """)
+    List<User> findAll();
 }
