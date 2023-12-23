@@ -11,13 +11,13 @@
     <thead>
     <tr>
         <th>Username</th>
-        <th>Password</th>
+        <th>Authority</th>
     </tr>
     </thead>
     <tbody>
     <tr th:each="user : ${userList}" th:object="${user}">
         <td th:text="*{username}"></td>
-        <td th:text="*{password}"></td>
+        <td th:text="*{authority}"></td>
     </tr>
     </tbody>
 </table>

@@ -25,18 +25,12 @@ public class UserService implements UserDetailsService {
                 .map(u -> org.springframework.security.core.userdetails.User.builder()
                         .username(u.username())
                         .password(u.password())
-                        .authorities(findAuthorities(u.username()))
+                        .authorities(u.authority().name())
                         .build()
                 )
                 .orElseThrow(() -> new UsernameNotFoundException(username + " not found"));
     }
 
-    private String[] findAuthorities(String username) {
-        return userRepository.findAuthoritiesByUsername(username)
-                .stream()
-                .map(Enum::name)
-                .toArray(String[]::new);
-    }
 
     @Transactional
     public void create(String username, String rawPassword) {
